@@ -7,6 +7,8 @@ const byte address[6] = "00001";
 unsigned long lastReceiveTime = 0;
 unsigned long currentTime = 0;
 
+int pwmPin = // PIN_NUM;
+
 // Max size of this struct is 32 bytes - NRF24L01 buffer limit
 struct Data_Package {
   byte j1PotX;
