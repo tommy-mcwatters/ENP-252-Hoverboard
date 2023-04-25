@@ -7,7 +7,7 @@ const byte address[6] = "00001";
 unsigned long lastReceiveTime = 0;
 unsigned long currentTime = 0;
 
-int pwmPin = // PIN_NUM;
+int motorPinOne = // PIN_NUM;
 
 // Max size of this struct is 32 bytes - NRF24L01 buffer limit
 struct Data_Package {
@@ -40,6 +40,10 @@ void setup() {
   radio.setPALevel(RF24_PA_LOW);
   radio.startListening(); //  Set the module as receiver
   resetData();
+  
+  // Declare input pin for motors
+  pinMode(motorPinOne, OUTPUT);
+  
 }
 
 // -------------------------------------------------- END SETUP --------------------------------------------------
@@ -67,13 +71,13 @@ void loop() {
   Serial.print("; j2PotX: ");
   Serial.println(data.j2PotX); 
 
-  /*
-   * 
-   * 
-   *  IMPLEMENT CODE HERE
-   * 
-   * 
-   */
+  /* Start of Implementation Code */
+  
+  int maxTime = 255;
+  digitalWrite(motorPinOne, HIGH);
+  delayMicroseconds(data.pot1); 
+  digitalWrite(motorPinOne, LOW);
+  delayMicroseconds(maxTime - data.pot1);
 }
 
 // -------------------------------------------------- END LOOP --------------------------------------------------
